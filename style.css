@@ -1,0 +1,173 @@
+/* ─── Page Layout ──────────────────────────────────────────────────────────────
+   Centers the todo card both vertically and horizontally on the page */
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    margin: 0;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ─── Main Card ────────────────────────────────────────────────────────────────
+   The rounded card that holds the entire app */
+#container {
+    background-color: #ffffff;
+    width: 360px;
+    height: 420px;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* App title */
+#container h3 {
+    color: #333;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    font-size: 1.4em;
+}
+
+/* ─── Task List ────────────────────────────────────────────────────────────────
+   Scrollable area where all todo items are displayed */
+#list {
+    width: 100%;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 15px;
+    overflow-y: auto;       /* enables scrolling when items overflow */
+    word-wrap: break-word;  /* prevents long words from breaking the layout */
+    box-sizing: border-box;
+}
+
+/* ─── Input Row ────────────────────────────────────────────────────────────────
+   Flex row containing the text input and the ADD button */
+#tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+/* Text input field */
+#todo {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+/* Highlight the input border when focused */
+#todo:focus {
+    border-color: #888;
+}
+
+/* ADD button */
+#submit {
+    padding: 10px 18px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+/* ADD button hover effect */
+#submit:hover {
+    background-color: #333;
+}
+
+/* ─── Todo Item ────────────────────────────────────────────────────────────────
+   Each task row: [checkbox] [label text] */
+.listItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 6px;
+    border-bottom: 1px solid #eee; /* separator line between items */
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+/* Remove the bottom border from the last item to avoid a double line */
+.listItem:last-child {
+    border-bottom: none;
+}
+
+/* Subtle hover highlight to indicate the row is clickable */
+.listItem:hover {
+    background-color: #f0f0f0;
+}
+
+/* ─── Checkbox ─────────────────────────────────────────────────────────────────
+   Small square box on the left of each task.
+   Empty by default; filled with a ✔ when the task is marked done. */
+.checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75em;
+    flex-shrink: 0; /* prevents the box from shrinking on long task text */
+    transition: background-color 0.2s, border-color 0.2s;
+    color: white;
+}
+
+/* Checkbox turns grey when the task is done */
+.listItem.done .checkbox {
+    background-color: #888;
+    border-color: #888;
+}
+
+/* ─── Task Label ───────────────────────────────────────────────────────────────
+   The text portion of each todo item */
+.label {
+    flex: 1;
+    font-size: 0.95em;
+    color: #333;
+    transition: text-decoration 0.2s, color 0.2s;
+}
+
+/* Strikethrough + grey text when the task is marked done */
+.listItem.done .label {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+/* ─── Custom Scrollbar ─────────────────────────────────────────────────────────
+   Styles the scrollbar inside the #list area (WebKit browsers only) */
+#list::-webkit-scrollbar {
+    width: 6px;
+}
+#list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 6px;
+}
+#list::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* ─── Footer ───────────────────────────────────────────────────────────────────
+   Fixed author credit at the bottom-right of the page */
+footer {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    color: #aaa;
+    font-size: 0.85em;
+}

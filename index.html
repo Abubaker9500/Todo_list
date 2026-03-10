@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TODO LIST</title>
+    <!-- Main stylesheet for layout, colors, and component styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ── Main Card ──────────────────────────────────────────────────────────
+         Centered container that holds the entire todo app -->
+    <div id="container">
+        <h3>TODO LIST</h3>
+
+        <!-- Task list area — todo items are injected here by script.js -->
+        <div id="list"></div>
+
+        <!-- ── Input Row ──────────────────────────────────────────────────────
+             Text field for typing a new task + button to add it.
+             Pressing Enter in the input also triggers addTodo() -->
+        <div id="tools">
+            <input type="text" id="todo" placeholder="Enter new task...">
+            <button id="submit">ADD</button>
+        </div>
+    </div>
+
+    <!-- Author credit fixed to the bottom-right corner -->
+    <footer>&copy; Abubaker Ahmadi</footer>
+
+    <!-- App logic: handles adding, completing, and removing tasks -->
+    <script src="script.js"></script>
+</body>
+</html>
