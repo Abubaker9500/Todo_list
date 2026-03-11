@@ -30,7 +30,7 @@ function saveTasks() {
 submit.addEventListener("click", addTodo);
 
 // Also allow submitting by pressing Enter in the input field
-todoInput.addEventListener("keypress", function(event) {
+todoInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         addTodo();
     }
@@ -65,6 +65,7 @@ function addTodo() {
 // Each item has two interaction states:
 //   1st click → marks it as done (checkmark + strikethrough), saves to localStorage
 //   2nd click → removes it from the DOM and localStorage
+//adds button to edit task
 function renderTask(task) {
     // Create the wrapper div for the todo row
     const newItem = document.createElement("div");
@@ -85,12 +86,19 @@ function renderTask(task) {
     label.className = "label";
     label.textContent = task.text;
 
+    //Add an edit button
+    const editButton = document.createElement("button");
+    editButton.className = "button";
+    editButton.textContent = "Edit";
+
     // Assemble the item: [checkbox] [label]
     newItem.appendChild(checkbox);
     newItem.appendChild(label);
+    //added editButton
+    newItem.appendChild(editButton);
 
     // Click handler: toggle done state on 1st click, delete on 2nd click
-    newItem.addEventListener("click", function() {
+    newItem.addEventListener("click", function () {
         if (this.classList.contains("done")) {
             // Already marked done — remove from DOM and from tasks array
             tasks = tasks.filter(t => t !== task);
@@ -107,6 +115,24 @@ function renderTask(task) {
         }
     });
 
+    //event listener for pressing edit button
+    //replaces the tesk of the task with the new text
+    editButton.addEventListener('click', function () {
+        //prevents clicking on button from triggering clickin on label
+        //avoid accidental strikeouts or deletion
+        event.stopPropagation(); 
+        let editedTask = prompt("Please enter the new task name", task.text);
+        if (editedTask != null) {
+            task.text = editedTask;
+            label.textContent = editedTask;
+            newItem.classList.remove("done");
+            task.done = false;
+            saveTasks();
+        }
+    });
+
     // Add the new item to the visible list
     list.appendChild(newItem);
 }
+
+
