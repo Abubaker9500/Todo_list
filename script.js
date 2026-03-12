@@ -107,7 +107,7 @@ function renderTask(task) {
         } else {
             // Mark as done in the DOM
             this.classList.add("done");
-            checkbox.textContent = "✔";
+            checkbox.textContent = "\u2714";
 
             // Update the task object and save to localStorage
             task.done = true;

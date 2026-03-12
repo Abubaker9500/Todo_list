@@ -1,7 +1,7 @@
 /* ─── Page Layout ──────────────────────────────────────────────────────────────
    Centers the todo card both vertically and horizontally on the page */
 body {
-    background-color: #f0f0f0;
+    background-color: #0f1115;
     display: flex;
     margin: 0;
     height: 100vh;
@@ -12,12 +12,13 @@ body {
 /* ─── Main Card ────────────────────────────────────────────────────────────────
    The rounded card that holds the entire app */
 #container {
-    background-color: #ffffff;
+    background-color: #161a22;
     width: 360px;
     height: 420px;
-    padding: 25px 30px;
+    padding: 28px 35px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #22283a
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +26,7 @@ body {
 
 /* App title */
 #container h3 {
-    color: #333;
+    color: white;
     margin-bottom: 15px;
     letter-spacing: 1px;
     font-size: 1.4em;
@@ -149,6 +150,10 @@ body {
     color: #aaa;
 }
 
+.listItem.done .checkbox{ 
+    color: white;
+    background-color: green;
+}
 /* ─── Custom Scrollbar ─────────────────────────────────────────────────────────
    Styles the scrollbar inside the #list area (WebKit browsers only) */
 #list::-webkit-scrollbar {
@@ -174,4 +179,5 @@ footer {
 
 p{
     text-align: center;
+    color: #FFF100;
 }
