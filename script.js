@@ -10,13 +10,35 @@ const list = document.getElementById("list");
 // This array is kept in sync with localStorage at all times.
 let tasks = [];
 
+//tasks but ordered by prority
+//re-ordered every time we call renderTasks using order function
+let orderedTasks = [];
+
+//orders orderedTasks
+function order() {
+    //starred and unstarred array so we don't randomly shuffle the order
+    let starred = [];
+    let unstarred = [];
+    tasks.forEach(element => {
+        if(element.starred == false){
+            //add to end of unstarred if unstarred
+            unstarred.push(element);
+        }else if (element.starred == true){
+            //add to end of array if starred
+            starred.push(element);
+        }
+        orderedTasks = starred.concat(unstarred);
+    });
+}
+
 // ─── Load on Startup ──────────────────────────────────────────────────────────
 // When the page loads, check localStorage for any previously saved tasks.
 // If found, parse them and re-render each one into the DOM.
 const saved = localStorage.getItem("todos");
 if (saved) {
     tasks = JSON.parse(saved);
-    tasks.forEach(task => renderTask(task));
+    order();
+    orderedTasks.forEach(task => renderTask(task));
 }
 
 // ─── Save to localStorage ─────────────────────────────────────────────────────
@@ -46,7 +68,7 @@ function addTodo() {
     if (value === "") return;
 
     // Create a new task object and add it to the array
-    const task = { text: value, done: false };
+    const task = { text: value, done: false, starred: false, };
     tasks.push(task);
 
     // Persist the updated array to localStorage
@@ -67,6 +89,8 @@ function addTodo() {
 //   2nd click → removes it from the DOM and localStorage
 //adds button to edit task
 function renderTask(task) {
+
+
     // Create the wrapper div for the todo row
     const newItem = document.createElement("div");
     newItem.className = "listItem";
@@ -91,11 +115,23 @@ function renderTask(task) {
     editButton.className = "button";
     editButton.textContent = "Edit";
 
+    //add a star icon for priority
+    //element needs to be named i to work with icon library
+    const star = document.createElement("i");
+    if (task.starred == false)
+        star.className = 'fa fa-star';
+    else {
+        star.className = 'fa fa-star checked';
+    }
+
     // Assemble the item: [checkbox] [label]
     newItem.appendChild(checkbox);
     newItem.appendChild(label);
-    //added editButton
+    //added editButton, star
+    newItem.appendChild(star);
     newItem.appendChild(editButton);
+
+
 
     // Click handler: toggle done state on 1st click, delete on 2nd click
     newItem.addEventListener("click", function () {
@@ -117,10 +153,10 @@ function renderTask(task) {
 
     //event listener for pressing edit button
     //replaces the tesk of the task with the new text
-    editButton.addEventListener('click', function () {
+    editButton.addEventListener('click', function (event) {
         //prevents clicking on button from triggering clickin on label
         //avoid accidental strikeouts or deletion
-        event.stopPropagation(); 
+        event.stopPropagation();
         let editedTask = prompt("Please enter the new task name", task.text);
         if (editedTask != null) {
             task.text = editedTask;
@@ -129,6 +165,22 @@ function renderTask(task) {
             task.done = false;
             saveTasks();
         }
+    });
+
+    //even listener for clicking on star
+    star.addEventListener('click', function (event) {
+        event.stopPropagation();
+        if (task.starred == false) {
+            task.starred = true;
+            star.className = 'fa fa-star checked';
+        }
+        else if (task.starred == true) {
+            task.starred = false;
+            star.className = 'fa fa-star';
+        }
+        saveTasks();
+        //reload page to show correct order
+        window.location.reload();
     });
 
     // Add the new item to the visible list

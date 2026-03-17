@@ -17,7 +17,7 @@ body {
     height: 420px;
     padding: 28px 35px;
     border-radius: 8px;
-    border: 1px solid #22283a
+    border: 1px solid #22283a;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
     display: flex;
     flex-direction: column;
@@ -181,3 +181,9 @@ p{
     text-align: center;
     color: #FFF100;
 }
+
+/* adds color for checked stars */
+.checked {
+  color: orange;
+}
+
