@@ -14,7 +14,8 @@ We are going to be saving everything using browser localstorage.
 -Mark tasks as complete and incomplete. 
 -Delete tasks. 
 -Tasks remain post refresh. 
-
+-Star that allows for tasks to be pushed to the top
+-Confirmation prior to deletion of a task. 
 # How to run. 
 -Clone our repo
 -Open index.html in a browser. 
@@ -24,6 +25,10 @@ We are going to be saving everything using browser localstorage.
 once any work is completed on the project. 
 -Users will have access to a list of tasks and work on whatever we can and is available.
 reserving tasks, and potentially being assigned tasks.
+
+# How to run
+-Clone the Repo
+- Open index.html in web. 
 
 # Structure
 -index.html
