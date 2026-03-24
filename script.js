@@ -136,6 +136,9 @@ function renderTask(task) {
     // Click handler: toggle done state on 1st click, delete on 2nd click
     newItem.addEventListener("click", function () {
         if (this.classList.contains("done")) {
+        const shouldDelete = confirm ("Are you sure you want to delete this task?");
+            if(!shouldDelete) return;
+
             // Already marked done — remove from DOM and from tasks array
             tasks = tasks.filter(t => t !== task);
             saveTasks();
