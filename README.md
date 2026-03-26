@@ -28,7 +28,13 @@ reserving tasks, and potentially being assigned tasks.
 
 # How to run
 -Clone the Repo
-- Open index.html in web. 
+- Open index.html in web.
+- To add a task enter the title of the task in the text box and click "ADD"
+- Click the small box next to a task to mark it as done.
+- Click on a completed task to delete it.
+- To uncomplete a task click on edit.
+- To edit a task click edit and simply change the text (note this will uncomplete said task)
+- Click on the small star next to a task to prioritize it making it become the thing on top of the To-Do list. 
 
 # Structure
 -index.html
