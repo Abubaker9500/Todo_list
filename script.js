@@ -64,8 +64,12 @@ todoInput.addEventListener("keypress", function (event) {
 function addTodo() {
     const value = todoInput.value.trim();
 
-    // Don't add empty tasks
-    if (value === "") return;
+   
+    //add a popup if the task is empty
+     if (value === "") {
+        alert("Please enter a task.");
+        return;
+    }
 
     // Create a new task object and add it to the array
     const task = { text: value, done: false, starred: false, };
